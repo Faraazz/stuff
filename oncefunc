@@ -1,0 +1,20 @@
+function add (n1, n2){
+  return n1 + n2;
+}
+
+function oncefunc(fn){
+  var first;
+  var result;
+  
+  return function(){
+    if (first){
+      return result;
+    }
+    first = true;
+    result = fn.apply(this, arguments);
+    fn = null;
+    return result;
+  }
+}
+
+var addOnce = oncefunc(add);
